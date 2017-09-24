@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, Container, Row, Col } from 'reactstrap'
+import { Route } from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap'
+
+import Menu from './shared/Menu';
 
 import Settings from './features/settings/Settings';
 import CurrencyList from './features/currencies/CurrencyList';
@@ -9,16 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light>
-          <NavbarBrand href="/">Crypto Prices</NavbarBrand>
-          <Nav navbar>
-            <NavItem>
-                <Link to="/settings" className="nav-link">
-                  <i className="fa fa-cog" aria-hidden="true"></i>
-                </Link>
-            </NavItem>
-          </Nav>
-        </Navbar>
+        <Menu />
         <Container>
           <Row>
             <Col>

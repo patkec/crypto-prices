@@ -1,45 +1,34 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Jumbotron, Container, Row, Col } from 'reactstrap'
+import { Link, Route } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavItem, Container, Row, Col } from 'reactstrap'
+
+import Settings from './features/settings/Settings';
+import CurrencyList from './features/currencies/CurrencyList';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { isOpen: false };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({ isOpen: !this.state.isOpen });
-  }
-
   render() {
     return (
       <div>
-        <Navbar color="light" light toggleable>
-          <NavbarToggler right onClick={this.toggle} />
+        <Navbar color="light" light>
           <NavbarBrand href="/">Crypto Prices</NavbarBrand>
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">Settings</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
+          <Nav navbar>
+            <NavItem>
+                <Link to="/settings" className="nav-link">
+                  <i className="fa fa-cog" aria-hidden="true"></i>
+                </Link>
+            </NavItem>
+          </Nav>
         </Navbar>
-        <Jumbotron>
-          <Container>
-            <Row>
-              <Col>
-                <h1>Crypto Prices</h1>
-              </Col>
-            </Row>
-          </Container>
-        </Jumbotron>
+        <Container>
+          <Row>
+            <Col>
+              <Route path="/currencies" component={CurrencyList} />
+              <Route path="/settings" component={Settings} />
+
+              <Route exact path="/" component={CurrencyList} />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

@@ -1,18 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Jumbotron, Container, Row, Col } from 'reactstrap'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isOpen: false };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Navbar color="light" light toggleable>
+          <NavbarToggler right onClick={this.toggle} />
+          <NavbarBrand href="/">Crypto Prices</NavbarBrand>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">Settings</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+        <Jumbotron>
+          <Container>
+            <Row>
+              <Col>
+                <h1>Crypto Prices</h1>
+              </Col>
+            </Row>
+          </Container>
+        </Jumbotron>
       </div>
     );
   }

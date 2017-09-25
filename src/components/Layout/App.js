@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap'
 
 import Header from './Header';
-
 import Settings from '../Settings';
 import CurrencyList from '../Currencies/CurrencyList';
 
-class App extends Component {
+import { currencies, settings } from '../../constants/routes';
+
+export default class App extends Component {
   render() {
     return (
       <div>
@@ -15,10 +16,12 @@ class App extends Component {
         <Container>
           <Row>
             <Col>
-              <Route path="/currencies" component={CurrencyList} />
-              <Route path="/settings" component={Settings} />
+              <Switch>
+                <Route path={currencies} component={CurrencyList} />
+                <Route path={settings} component={Settings} />
 
-              <Route exact path="/" component={CurrencyList} />
+                <Redirect to={currencies} />
+              </Switch>
             </Col>
           </Row>
         </Container>
@@ -26,5 +29,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

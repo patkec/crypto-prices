@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'reactstrap'
 
-class Menu extends Component {
+export default class Menu extends Component {
   render() {
     return (
       <Navbar color="light" light>
@@ -14,16 +14,14 @@ class Menu extends Component {
           return (
             <Nav navbar>
               <NavItem>
-                  <Link to="/settings" className="nav-link">
-                    <i className="fa fa-cog" aria-hidden="true"></i>
-                  </Link>
+                <Link to="/settings" className="nav-link">
+                  <i className="fa fa-cog" aria-hidden="true"></i>
+                </Link>
               </NavItem>
             </Nav>
           );
         }} />
       </Navbar>
     );
-  };
+  }
 }
-
-export default Menu;

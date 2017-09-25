@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap'
 
-import Menu from './shared/Menu';
+import Header from './Header';
 
-import Settings from './features/settings/Settings';
-import CurrencyList from './features/currencies/CurrencyList';
+import Settings from '../Settings';
+import CurrencyList from '../Currencies/CurrencyList';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Menu />
+        <Header />
         <Container>
           <Row>
             <Col>

@@ -4,7 +4,7 @@ import { Navbar, Nav, NavItem } from 'reactstrap';
 
 import { settings } from '../../constants/routes';
 
-export default class Menu extends Component {
+class Header extends Component {
   render() {
     return (
       <Navbar color="light" light>
@@ -27,3 +27,5 @@ export default class Menu extends Component {
     );
   }
 }
+
+export default Header;

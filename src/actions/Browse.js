@@ -8,6 +8,9 @@ export class BrowseAction extends ActionBase {
       .then(this.handleError)
       .then(this.toJson)
       .then((list) => {
+        list.forEach((currency) => {
+          currency.last_updated = new Date(parseInt(currency.last_updated, 10) * 1000);
+        });
         currencyStore.setList(list);
       });
   }

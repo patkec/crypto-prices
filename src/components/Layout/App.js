@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap';
 
 import Header from './Header';
 import Settings from '../Settings';

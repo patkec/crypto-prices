@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import { Navbar, Nav, NavItem } from 'reactstrap'
+import { Navbar, Nav, NavItem } from 'reactstrap';
+
+import { settings } from '../../constants/routes';
 
 export default class Menu extends Component {
   render() {
@@ -8,7 +10,7 @@ export default class Menu extends Component {
       <Navbar color="light" light>
         <Link to="/" className="navbar-brand">Crypto Prices</Link>
         <Route render={(props) => {
-          if (props.location.pathname === '/settings') {
+          if (props.location.pathname === settings) {
             return null;
           }
           return (

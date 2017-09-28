@@ -5,8 +5,9 @@ import { Container, Row, Col } from 'reactstrap';
 import Header from './Header';
 import Settings from '../Settings';
 import CurrencyList from '../Currencies/CurrencyList';
+import CurrencyDetail from '../Currencies/CurrencyDetail';
 
-import { currencies, settings } from '../../constants/routes';
+import { currencies, currency, settings } from '../../constants/routes';
 
 class App extends Component {
   render() {
@@ -17,7 +18,8 @@ class App extends Component {
           <Row>
             <Col>
               <Switch>
-                <Route path={currencies} component={CurrencyList} />
+                <Route exact path={currencies} component={CurrencyList} />
+                <Route path={currency} component={CurrencyDetail} />
                 <Route path={settings} component={Settings} />
 
                 <Redirect to={currencies} />

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
-import { Button } from 'reactstrap';
-
-import browse from '../../actions/Browse';
+import { Button, Table } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class CurrencyList extends Component {
   constructor(props) {
@@ -12,33 +11,42 @@ class CurrencyList extends Component {
   }
 
   componentDidMount() {
-    browse.fetchCurrencies();
+    const { currencyStore } = this.props;
+    currencyStore.loadCurrencies();
   }
 
   refresh() {
-    browse.fetchCurrencies();
+    const { currencyStore } = this.props;
+    currencyStore.loadCurrencies();
   }
 
   render() {
-    const { currencyStore } = this.props;
+    const { currencies } = this.props.currencyStore;
     return (
       <div>
         <Button onClick={this.refresh}>Refresh</Button>
-        {currencyStore.currencies.map((currency) => (<div key={currency.id}>
-          id: {currency.id}
-          available_supply: {currency.available_supply}
-          last_updated: {currency.last_updated.toString()}
-          market_cap_usd: {currency.market_cap_usd}
-          name: {currency.name}
-          percent_change_1h: {currency.percent_change_1h}
-          percent_change_7d: {currency.percent_change_7d}
-          percent_change_24h: {currency.percent_change_24h}
-          price_btc: {currency.price_btc}
-          price_usd: {currency.price_usd}
-          rank: {currency.rank}
-          symbol: {currency.symbol}
-          total_supply: {currency.total_supply}
-        </div>))}
+        <Table hover>
+          <thead>
+            <tr>
+              <th>rank</th>
+              <th>symbol</th>
+              <th>price</th>
+              <th>24h change</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currencies.map((currency) => (
+              <tr key={currency.id}>
+                <th scope="row">{currency.rank}</th>
+                <td>
+                  <Link to={`/currencies/${currency.id}`}>{currency.symbol}</Link>
+                </td>
+                <td>{currency.price_usd}</td>
+                <td>{currency.percent_change_24h}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
     );
   }

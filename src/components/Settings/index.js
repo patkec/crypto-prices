@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
-import { Form, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Alert, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-import { AVAILABLE_FIAT_CURRENCIES } from '../../constants/fiatCurrencies';
+import { currencies } from '../../constants/routes';
+
+import SettingsForm from './SettingsForm';
 
 class Settings extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      saved: false,
-      fiatCurrency: props.settingsStore.fiatCurrency
-    };
+    this.state = { saved: false };
   }
 
-  save = (e) => {
-    e.preventDefault();
+  save = (fiatCurrency) => {
     this.setState({ saved: true });
-    this.props.settingsStore.setFiatCurrency(this.state.fiatCurrency);
+    this.props.settingsStore.setFiatCurrency(fiatCurrency);
   }
 
   dismissAlert = () => {
@@ -27,25 +26,18 @@ class Settings extends Component {
   render() {
     return (
       <div>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to={currencies}>Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>Settings</BreadcrumbItem>
+        </Breadcrumb>
+
         <Alert color="success" isOpen={this.state.saved} toggle={this.dismissAlert}>
           Settings have been updated.
         </Alert>
-        <Form onSubmit={this.save}>
-          <FormGroup>
-            <Label for="fiatCurrency">Fiat currency</Label>
-            <Input
-              type="select"
-              name="fiatCurrency"
-              id="fiatCurrency"
-              value={this.state.fiatCurrency}
-              onChange={(value) => { this.setState({ fiatCurrency: value.target.value }); }}
-              className="form-control"
-            >
-              {AVAILABLE_FIAT_CURRENCIES.map((fiatCurrency) => (<option key={fiatCurrency} value={fiatCurrency}>{fiatCurrency}</option>))}
-            </Input>
-          </FormGroup>
-          <Button>Save</Button>
-        </Form>
+
+        <SettingsForm onSave={this.save} fiatCurrency={this.props.settingsStore.fiatCurrency} />
       </div>
     );
   }

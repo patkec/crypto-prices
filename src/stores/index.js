@@ -1,8 +1,11 @@
 import { CurrencyStore } from './CurrencyStore';
+import { SettingsStore } from './SettingsStore';
 import currencyTransport from '../transports/CurrencyTransport';
 
-const currencyStore = new CurrencyStore(currencyTransport);
+const settingsStore = new SettingsStore();
+const currencyStore = new CurrencyStore(currencyTransport, settingsStore);
 
 export {
-  currencyStore
+  currencyStore,
+  settingsStore
 };

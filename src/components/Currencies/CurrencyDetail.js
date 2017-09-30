@@ -8,9 +8,6 @@ class CurrencyDetail extends Component {
     const fiatCurrency = settingsStore.fiatCurrency;
     const fiatCurrencyProp = fiatCurrency.toLowerCase();
 
-    console.log(currency[`24h_volume_${fiatCurrencyProp}`]);
-    console.log(typeof currency[`24h_volume_${fiatCurrencyProp}`]);
-
     return (
       <div>
         <h1>

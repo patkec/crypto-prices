@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
-import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+
+import { currencies } from '../../constants/routes';
 
 import Error from '../shared/Error';
 import CurrencyDetail from './CurrencyDetail';
@@ -25,11 +28,17 @@ class CurrencyDetailView extends Component {
 
     const content = error
       ? <Error error={error} />
-      : <CurrencyDetail currency={currency} />;
+      : <CurrencyDetail currency={currency} refresh={this.refresh} />;
 
     return (
       <div>
-        <Button onClick={this.refresh}>Refresh</Button>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to={currencies}>Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{currency ? currency.name : 'Detail'}</BreadcrumbItem>
+        </Breadcrumb>
+
         {content}
       </div>
     );

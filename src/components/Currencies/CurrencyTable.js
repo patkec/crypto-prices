@@ -12,9 +12,9 @@ class CurrencyTable extends Component {
       <Table hover>
         <thead>
           <tr>
-            <th>rank</th>
-            <th>symbol</th>
-            <th>price ({settingsStore.fiatCurrency})</th>
+            <th>Rank</th>
+            <th>Symbol</th>
+            <th>Price ({settingsStore.fiatCurrency})</th>
             <th>24h change</th>
           </tr>
         </thead>

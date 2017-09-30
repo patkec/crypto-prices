@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
-import { Button } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
 
 import Error from '../shared/Error';
 import CurrencyTable from './CurrencyTable';
@@ -27,7 +27,14 @@ class CurrencyList extends Component {
 
     return (
       <div>
-        <Button onClick={this.refresh}>Refresh</Button>
+        <Breadcrumb>
+          <BreadcrumbItem active>Home</BreadcrumbItem>
+        </Breadcrumb>
+
+        <h1>
+          Top 100 cryptocurrencies
+          <Button className="float-right" onClick={this.refresh}>Refresh</Button>
+        </h1>
         {content}
       </div>
     );

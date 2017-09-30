@@ -12,7 +12,7 @@ export class CurrencyTransport {
     }
 
     response.forEach((currency) => {
-      // Convert from epoch to date.
+      // Convert from unix timestamp to JS date.
       currency.last_updated = new Date(parseInt(currency.last_updated, 10) * 1000);
     });
 

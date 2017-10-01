@@ -13,12 +13,12 @@ it('displays given fiat currency as currently selected', () => {
   expect(wrapper.find('select')).toHaveProp('value', 'EUR');
 });
 
-it('calls the save callback with selected fiat currency', () => {
+it('calls the save callback with selected fiat currency on submit', () => {
   let fiatCurrency = null;
   const callback = (value) => { fiatCurrency = value; };
   const wrapper = mount(<SettingsForm fiatCurrency="EUR" onSave={callback} />);
 
-  wrapper.instance().save({ preventDefault: () => {} });
+  wrapper.find('form').simulate('submit');
 
   expect(fiatCurrency).toEqual('EUR');
 });
